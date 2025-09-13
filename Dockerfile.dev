@@ -1,0 +1,32 @@
+FROM php:8.3-cli
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    zip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Xdebug for development and coverage
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+# Configure Xdebug
+RUN echo "xdebug.mode=coverage,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_port=9003" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set working directory
+WORKDIR /app
+
+# Create a non-root user
+RUN useradd -m -s /bin/bash appuser
+USER appuser
+
+# Set up composer cache directory
+RUN mkdir -p /home/appuser/.composer
+
+# Default command
+CMD ["bash"]

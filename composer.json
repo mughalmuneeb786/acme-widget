@@ -1,0 +1,41 @@
+{
+    "name": "acme-widget/sales-system",
+    "description": "Acme Widget Co sales system with basket functionality",
+    "type": "library",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Muneeb",
+            "email": "muneeb.afzal786@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "AcmeWidget\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/PHPUnit/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage",
+        "analyse": "phpstan analyse src tests --level=max",
+        "demo": "php demo.php",
+        "cs": "phpcs --standard=phpcs.xml src tests"
+    }
+}

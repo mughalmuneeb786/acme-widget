@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ruleset name="MyProject">
+    <description> ACME Widget for coding standards based on PSR-12</description>
+
+    <!-- Use PSR-12 standard -->
+    <rule ref="PSR12"/>
+
+    <!-- Add a custom rule for line length -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="150"/>
+        </properties>
+    </rule>
+
+    <!-- Specify files and directories to check -->
+    <arg name="extensions" value="php"/>
+    <file>./src</file>
+    <file>./tests</file>
+
+    <!-- Exclude specific files or directories -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+</ruleset>

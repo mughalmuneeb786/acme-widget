@@ -1,0 +1,49 @@
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: php demo.php
+    
+  php-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - composer-cache:/home/appuser/.composer
+    working_dir: /app
+    command: tail -f /dev/null  # Keep container running for development
+    environment:
+      - COMPOSER_CACHE_DIR=/home/appuser/.composer
+    
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - composer-cache:/home/appuser/.composer
+    working_dir: /app
+    command: composer test
+    environment:
+      - COMPOSER_CACHE_DIR=/home/appuser/.composer
+
+  analyse:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - composer-cache:/home/appuser/.composer
+    working_dir: /app
+    command: composer analyse
+    environment:
+      - COMPOSER_CACHE_DIR=/home/appuser/.composer
+
+volumes:
+  composer-cache:
