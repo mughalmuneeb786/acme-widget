@@ -19,6 +19,9 @@ final class BasketFactory
     /** @var array<OfferInterface> */
     private array $offers;
 
+    /**
+     * @param array<OfferInterface>|null $offers
+     */
     public function __construct(
         ?ProductCatalogInterface $catalog = null,
         ?DeliveryCalculatorInterface $deliveryCalculator = null,
