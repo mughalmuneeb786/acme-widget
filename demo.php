@@ -53,7 +53,17 @@ function main(): void
     $basket = $factory->createBasket();
     while (true) {
         echo "> ";
-        $input = trim(fgets(STDIN));
+        $line = fgets(STDIN);
+        if ($line === false) {
+        // EOF or input error
+        echo "\nNo input detected. Exiting.\n";
+        break;
+        }
+        $input = trim($line);
+        if ($input === 'r01' || $input === 'g01' || $input === 'b01') {
+        // Skip empty input
+        continue;
+        }
         if (strtolower($input) === 'exit') {
             break;
         }
