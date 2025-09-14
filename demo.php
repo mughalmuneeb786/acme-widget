@@ -49,12 +49,12 @@ function main(): void
     echo "2-'delivery' - Show delivery calculation\n";
     echo "3-'clear' - Clear basket\n";
     echo "4-'help' - Show this help\n";
-    echo "5-'quit' - Exit\n\n";
+    echo "5-'exit' - Exit\n\n";
     $basket = $factory->createBasket();
     while (true) {
         echo "> ";
         $input = trim(fgets(STDIN));
-        if (strtolower($input) === 'quit') {
+        if (strtolower($input) === 'exit') {
             break;
         }
         if (strtolower($input) === 'total') {
@@ -76,7 +76,7 @@ function main(): void
             echo "total - Show detailed breakdown\n";
             echo "delivery - Show delivery calculation\n";
             echo "clear - Clear basket\n";
-            echo "quit - Exit\n";
+            echo "exit - Exit\n";
             continue;
         }
         try {
