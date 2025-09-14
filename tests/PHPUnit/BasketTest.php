@@ -23,7 +23,8 @@ final class BasketTest extends TestCase
 
     /**
      * @dataProvider basketTestCasesProvider
-     */
+     * @param list<string> $products
+    */
     public function testBasketTotals(array $products, float $expectedTotal): void
     {
         $basket = $this->factory->createBasket();
@@ -33,6 +34,9 @@ final class BasketTest extends TestCase
         $this->assertEquals($expectedTotal, $basket->total());
     }
 
+    /**
+     * @return array<string, array{0: list<string>, 1: float}>
+     */
     public static function basketTestCasesProvider(): array
     {
         return [

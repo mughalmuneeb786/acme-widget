@@ -13,8 +13,8 @@ use AcmeWidget\Interfaces\DeliveryCalculatorInterface;
 class TieredDeliveryCalculator implements DeliveryCalculatorInterface
 {
     /**
-     * @param array<array{threshold: float, cost: float}> $tiers Sorted by threshold descending
-     */
+    * @param array<int, array{threshold: float, cost: float}> $tiers
+    */
     public function __construct(private array $tiers)
     {
         $this->validateTiers($tiers);
@@ -33,8 +33,8 @@ class TieredDeliveryCalculator implements DeliveryCalculatorInterface
     }
 
     /**
-     * @param array<array{threshold: float, cost: float}> $tiers
-     */
+    * @param array<int, array<string, float>> $tiers
+    */
     private function validateTiers(array $tiers): void
     {
         if (empty($tiers)) {
