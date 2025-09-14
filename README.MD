@@ -151,7 +151,7 @@ The system passes all required test cases:
 ./vendor/bin/phpunit --coverage-html coverage
 
 # Specific test
-./vendor/bin/phpunit tests/BasketTest.php
+./vendor/bin/phpunit tests/PHPUnit/BasketTest.php
 ```
 
 ### Static Analysis
